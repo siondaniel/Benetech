@@ -86,7 +86,7 @@ def render_text(
     top_padding: int = 5,
     bottom_padding: int = 5,
     font_bytes: Optional[bytes] = None,
-    font_path: Optional[str] = '/kaggle/input/noise2noise/ARIAL.TTF',
+    font_path: Optional[str] = DEFAULT_FONT_PATH,
 ) -> Image.Image:
     """
     Render text. This script is entirely adapted from the original script that can be found here:
@@ -124,9 +124,9 @@ def render_text(
     if font_bytes is not None and font_path is None:
         font = io.BytesIO(font_bytes)
     elif font_path is not None:
-        font = font_path
+        font = DEFAULT_FONT_PATH
     else:
-        font = hf_hub_download(DEFAULT_FONT_PATH, "Arial.TTF")
+        font = DEFAULT_FONT_PATH
     font = ImageFont.truetype(font, encoding="UTF-8", size=text_size)
 
     # Use a temporary canvas to determine the width and height in pixels when
@@ -395,7 +395,7 @@ class Pix2StructImageProcessor(BaseImageProcessor):
                 header_text = [header_text] * len(images)
 
             images = [
-                render_header(image, header_text[i], font_bytes=font_bytes, font_path=font_path)
+                render_header(image, header_text[i], font_bytes=font_bytes, font_path=DEFAULT_FONT_PATH)
                 for i, image in enumerate(images)
             ]
 
