@@ -13,11 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Image processor class for Pix2Struct."""
-import sys
-
-# Append the parent directory of the current file to the system path
-sys.path.append('/opt/conda/lib/python3.10/site-packages/transformers/models/pix2struct/')
-
 import io
 import math
 from typing import Dict, Optional, Union
